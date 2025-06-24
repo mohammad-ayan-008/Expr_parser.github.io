@@ -39,7 +39,7 @@ title: Expression Parser
     box-shadow: 0 0 10px #000;
     max-width: 100%;
   }
-
+</style>
 
 <p align="left">
   <a href="https://freeimage.host/i/FTomCwQ">
