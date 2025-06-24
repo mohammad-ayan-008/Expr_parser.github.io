@@ -79,10 +79,10 @@ title: Expression Parser
     box-shadow: 0 0 10px #000;
   }
 /* Make punctuation and operators white */
+/* Only override punctuation and operators */
 .highlight .p,
 .highlight .o,
-.highlight span:not([class]),
-pre code > * {
+pre code span:not([class]) {
   color: var(--fg) !important;
 }
 </style>
