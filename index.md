@@ -1,7 +1,7 @@
 ---
 title: Expression Parser
 ---
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
   :root {
     --bg: #1a1a2e;
