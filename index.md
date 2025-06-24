@@ -82,6 +82,9 @@ title: Expression Parser
     border-radius: 6px;
     box-shadow: 0 0 10px #000;
   }
+  pre code span:not([class]) {
+  color: #ffffff !important;
+  }
 </style>
 
 <p align="left">
