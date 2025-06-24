@@ -1,5 +1,8 @@
 <p align="center">
-  <img src="https://i.ibb.co/rGj1Pkk/your-image.png" width="200" style="border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.2);" alt="My GitRust Logo" />
+  <a href="https://imgbb.com/">
+    <img src="https://i.ibb.co/nsG52rr3/download.jpg" alt="download" width="200" style="border-radius: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);" />
+  </a>
 </p>
+
 
 # A Simple Scanner 
