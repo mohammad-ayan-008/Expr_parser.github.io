@@ -1,38 +1,63 @@
 ---
-title: Expression Parser
+title: Expr_parser
 ---
 
 <style>
+  /* Dracula color palette via CSS variables */
   :root {
-    --bg: #fff; --fg: #333;
-    --code-bg: #f5f5f5; --code-fg: #111;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #111; --fg: #eee;
-      --code-bg: #1e1e1e; --code-fg: #eee;
-    }
+    --dracula-bg: #282a36;
+    --dracula-current-line: #44475a;
+    --dracula-foreground: #f8f8f2;
+    --dracula-comment: #6272a4;
+    --dracula-cyan: #8be9fd;
+    --dracula-green: #50fa7b;
+    --dracula-orange: #ffb86c;
+    --dracula-pink: #ff79c6;
+    --dracula-purple: #bd93f9;
+    --dracula-red: #ff5555;
+    --dracula-yellow: #f1fa8c;
   }
 
+  /* Base styles */
   body {
-    background: var(--bg);
-    color: var(--fg);
-    padding: 20px;
+    background-color: var(--dracula-bg);
+    color: var(--dracula-foreground);
     font-family: 'Segoe UI', sans-serif;
+    padding: 20px;
   }
-  pre {
-    background: var(--code-bg) !important;
-    color: var(--code-fg) !important;
-    padding: 12px;
-    border-radius: 6px;
+
+  h1, h2, h3 {
+    color: var(--dracula-pink);
+  }
+
+  a {
+    color: var(--dracula-cyan);
+  }
+
+  /* Code block & inline code */
+  pre, .highlight {
+    background-color: var(--dracula-current-line) !important;
+    color: var(--dracula-foreground) !important;
+    padding: 1rem;
+    border-radius: 8px;
     overflow-x: auto;
     font-family: 'Fira Code', monospace;
     font-size: 0.95em;
   }
-  .highlight {
-    background: var(--code-bg) !important;
-    color: var(--code-fg) !important;
+
+  pre code {
+    background: none !important;
+    color: inherit !important;
   }
+
+  .highlight .k       { color: var(--dracula-pink); }    /* keywords */
+  .highlight .nf      { color: var(--dracula-green); }   /* function names */
+  .highlight .nv      { color: var(--dracula-purple); }  /* variables */
+  .highlight .mi      { color: var(--dracula-purple); }  /* numbers */
+  .highlight .s, .highlight .sb { color: var(--dracula-yellow); } /* strings */
+  .highlight .c, .highlight .cm { color: var(--dracula-comment); font-style: italic; }
+  .highlight .o       { color: var(--dracula-orange); }  /* operators */
+  .highlight .err     { color: var(--dracula-red); }     /* errors */
 </style>
 
 <p align="left">
