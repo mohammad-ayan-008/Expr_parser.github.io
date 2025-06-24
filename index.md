@@ -13,10 +13,6 @@ title: Expression Parser
     --number: #bd93f9;
     --type: #8be9fd;
   }
-
-  .highlight .p {
-  color: var(--fg) !important;
-  }
   body {
     background: var(--bg);
     color: var(--fg);
@@ -82,8 +78,11 @@ title: Expression Parser
     border-radius: 6px;
     box-shadow: 0 0 10px #000;
   }
-pre code,
-pre code span[class*="p"] {
+/* Make punctuation and operators white */
+.highlight .p,
+.highlight .o,
+.highlight span:not([class]),
+pre code > * {
   color: var(--fg) !important;
 }
 </style>
