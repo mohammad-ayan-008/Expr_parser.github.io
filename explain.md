@@ -10,7 +10,7 @@
 
 
 # A Simple Scanner 
-Since We are creating a small Parser to parse simple ## Mathematical  Expressions
+Since We are creating a small Parser to parse simple  Mathematical  Expressions
 just like 
 <p align="left">
  <a href="https://freeimage.host/i/FTxoj4a">
