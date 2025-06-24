@@ -79,8 +79,8 @@ title: Expression Parser
     border-radius: 6px;
     box-shadow: 0 0 10px #000;
   }
-pre code span:not([class]),
-pre code > :not(span) {
+pre code,
+pre code * {
   color: var(--fg) !important;
 }
 </style>
