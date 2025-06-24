@@ -1,8 +1,12 @@
-<div style="max-width: 300px; margin: auto;">
+<p align="center">
   <a href="https://freeimage.host/i/FTomCwQ">
-    <img src="https://iili.io/FTomCwQ.jpg" alt="FTomCwQ" style="width: 100%; border-radius: 12px;" />
+    <img src="https://iili.io/FTomCwQ.jpg" 
+         alt="FTomCwQ" 
+         width="350" 
+         style="border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);" />
   </a>
-</div>
+</p>
+
 
 
 # A Simple Scanner 
