@@ -3,57 +3,38 @@ title: Expression Parser
 ---
 
 <style>
+  :root {
+    --bg: #fff; --fg: #333;
+    --code-bg: #f5f5f5; --code-fg: #111;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111; --fg: #eee;
+      --code-bg: #1e1e1e; --code-fg: #eee;
+    }
+  }
+
   body {
-    background-color: #111;
-    color: #eee;
-    font-family: 'Segoe UI', sans-serif;
-    line-height: 1.6;
+    background: var(--bg);
+    color: var(--fg);
     padding: 20px;
+    font-family: 'Segoe UI', sans-serif;
   }
-
-  h1, h2, h3 {
-    color: #ffffff;
-  }
-
-  a {
-    color: #9ecbff;
-  }
-
-  code {
-    background-color: #222;
-    color: #ffb86c;
-    padding: 2px 4px;
-    border-radius: 4px;
-    font-family: monospace;
-  }
-
   pre {
-    background-color: #1e1e1e !important;
-    color: #eee !important;
+    background: var(--code-bg) !important;
+    color: var(--code-fg) !important;
     padding: 12px;
     border-radius: 6px;
     overflow-x: auto;
-    font-family: 'Fira Code', 'Consolas', monospace;
+    font-family: 'Fira Code', monospace;
     font-size: 0.95em;
   }
-
-  /* This overrides GitHub Pages' code block theming */
   .highlight {
-    background: #1e1e1e !important;
-    color: #eee !important;
-  }
-
-  .highlight pre, .highlight code {
-    background: none !important;
-    color: inherit !important;
-  }
-
-  img {
-    border-radius: 8px;
-    box-shadow: 0 0 10px #000;
-    max-width: 100%;
+    background: var(--code-bg) !important;
+    color: var(--code-fg) !important;
   }
 </style>
+
 <p align="left">
   <a href="https://freeimage.host/i/FTomCwQ">
     <img src="https://iili.io/FTomCwQ.jpg" 
