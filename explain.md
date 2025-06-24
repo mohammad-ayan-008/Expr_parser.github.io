@@ -12,7 +12,7 @@
 # A Simple Scanner 
 Since We are creating a small Parser to parse simple  __*Mathematical  Expressions*__
 just like 
-https://freeimage.host/i/docscanner-24-jun-2025-10-22-am.FTxoj4a
+
 <p align="left">
  <a href="https://freeimage.host/i/FTxoj4a">
     <img src="https://iili.io/FTxoj4a.jpg" 
