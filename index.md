@@ -95,17 +95,16 @@ title: Expression Parser
 We are creating a small Parser to parse simple  __*Mathematical  Expressions*__
 just like 
 
+
+</p>
 <p align="left">
- <a href="https://freeimage.host/i/FTTeP3B">
+  <a href="https://freeimage.host/i/FTTeP3B">
     <img src="https://iili.io/FTTeP3B.md.jpg" 
          alt="FTomCwQ" 
          width="350" 
-         style="borde
-    max-width: 100%;
-    border-radius: 6px;
-    box-shadow: 0 0 10px #000;
-  }
-
+         style="border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);" />
+  </a>
+</p>
 
 <p align="left">
   <a href="https://freeimage.host/i/FTomCwQ">
