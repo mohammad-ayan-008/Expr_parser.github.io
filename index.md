@@ -1,18 +1,13 @@
----
-title: Expression Parser
----
-
-
 <style>
   :root {
-    --bg: #1e1e1e;
-    --fg: #d4d4d4;
-    --comment: #6a9955;
-    --string: #ce9178;
-    --keyword: #569cd6;
-    --function: #dcdcaa;
-    --number: #b5cea8;
-    --type: #4ec9b0;
+    --bg: #1a1a2e;
+    --fg: #f8e9f0;
+    --comment: #7e6593;
+    --string: #ffb1c1;
+    --keyword: #ff79c6;
+    --function: #f8f8f2;
+    --number: #bd93f9;
+    --type: #8be9fd;
   }
 
   body {
@@ -23,15 +18,15 @@ title: Expression Parser
   }
 
   h1, h2, h3 {
-    color: #ffffff;
+    color: #ff9edb;
   }
 
   a {
-    color: #3794ff;
+    color: #82aaff;
   }
 
   pre, .highlight {
-    background: #1e1e1e !important;
+    background: #252537 !important;
     color: var(--fg) !important;
     padding: 1rem;
     border-radius: 6px;
@@ -48,7 +43,8 @@ title: Expression Parser
   /* Syntax Highlighting */
   .highlight .c,
   .highlight .cm {
-    color: var(--comment); font-style: italic;
+    color: var(--comment);
+    font-style: italic;
   }
 
   .highlight .s,
@@ -75,6 +71,37 @@ title: Expression Parser
   }
 
   img {
+    max-width: 100%;
+    border-radius: 6px;
+    box-shadow: 0 0 10px #000;
+  }
+</style>
+---
+title: Expression Parser
+---
+
+
+
+<p align="left">
+  <a href="https://freeimage.host/i/FTomCwQ">
+    <img src="https://iili.io/FTomCwQ.jpg" 
+         alt="FTomCwQ" 
+         width="350" 
+         style="border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);" />
+  </a>
+</p>
+
+
+# A Simple Scanner 
+We are creating a small Parser to parse simple  __*Mathematical  Expressions*__
+just like 
+
+<p align="left">
+ <a href="https://freeimage.host/i/FTTeP3B">
+    <img src="https://iili.io/FTTeP3B.md.jpg" 
+         alt="FTomCwQ" 
+         width="350" 
+         style="borde
     max-width: 100%;
     border-radius: 6px;
     box-shadow: 0 0 10px #000;
