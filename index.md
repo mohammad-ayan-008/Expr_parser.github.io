@@ -28,10 +28,19 @@ title: Expression Parser
   }
 
   pre {
-    background-color: #222;
-    padding: 10px;
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    padding: 12px;
     border-radius: 6px;
     overflow-x: auto;
+    font-family: 'Fira Code', 'Consolas', monospace;
+    font-size: 0.95em;
+  }
+
+  pre code {
+    background: none;
+    padding: 0;
+    color: inherit;
   }
 
   img {
