@@ -3,82 +3,39 @@ title: Expr_parser
 ---
 
 <style>
-  :root {
-    --bg: #1e1e1e;
-    --fg: #d4d4d4;
-    --comment: #6a9955;
-    --string: #ce9178;
-    --keyword: #569cd6;
-    --function: #dcdcaa;
-    --number: #b5cea8;
-    --type: #4ec9b0;
-  }
-  
-
   body {
-    background: var(--bg);
-    color: var(--fg);
+    background: #0d0d14;
+    color: #e6e6e6;
     font-family: 'Segoe UI', sans-serif;
-    padding: 20px;
+    padding: 24px;
   }
 
   h1, h2, h3 {
-    color: #ffffff;
+    color: #ff9edb;
   }
 
   a {
-    color: #3794ff;
+    color: #82aaff;
   }
 
-  pre, .highlight {
-    background: #1e1e1e !important;
-    color: var(--fg) !important;
-    padding: 1rem;
-    border-radius: 6px;
-    overflow-x: auto;
+  pre, code {
+    background: #1a1b26;
+    color: #e0def4;
+    padding: 12px 16px;
+    border-radius: 8px;
     font-family: 'Fira Code', monospace;
     font-size: 0.95em;
+    line-height: 1.6;
+    overflow-x: auto;
+    display: block;
   }
 
-  pre code {
-    background: none !important;
-    color: inherit !important;
-  }
-
-  /* Syntax Highlighting */
-  .highlight .c,
-  .highlight .cm {
-    color: var(--comment); font-style: italic;
-  }
-
-  .highlight .s,
-  .highlight .sb {
-    color: var(--string);
-  }
-
-  .highlight .k {
-    color: var(--keyword);
-  }
-
-  .highlight .nf {
-    color: var(--function);
-  }
-
-  .highlight .mi,
-  .highlight .m {
-    color: var(--number);
-  }
-
-  .highlight .nc,
-  .highlight .nt {
-    color: var(--type);
-  }
-
-  img {
-    max-width: 100%;
-    border-radius: 6px;
-    box-shadow: 0 0 10px #000;
-  }
+  code span.keyword    { color: #ff79c6; }   /* pink keywords */
+  code span.function   { color: #82aaff; }   /* soft blue functions */
+  code span.variable   { color: #f8f8f2; }
+  code span.comment    { color: #6272a4; font-style: italic; }
+  code span.string     { color: #f1fa8c; }
+  code span.number     { color: #bd93f9; }
 </style>
 
 <p align="left">
