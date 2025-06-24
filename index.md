@@ -14,6 +14,9 @@ title: Expression Parser
     --type: #8be9fd;
   }
 
+  .highlight .p {
+  color: var(--fg) !important;
+  }
   body {
     background: var(--bg);
     color: var(--fg);
