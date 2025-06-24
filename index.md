@@ -3,43 +3,37 @@ title: Expr_parser
 ---
 
 <style>
-  /* Dracula color palette via CSS variables */
   :root {
-    --dracula-bg: #282a36;
-    --dracula-current-line: #44475a;
-    --dracula-foreground: #f8f8f2;
-    --dracula-comment: #6272a4;
-    --dracula-cyan: #8be9fd;
-    --dracula-green: #50fa7b;
-    --dracula-orange: #ffb86c;
-    --dracula-pink: #ff79c6;
-    --dracula-purple: #bd93f9;
-    --dracula-red: #ff5555;
-    --dracula-yellow: #f1fa8c;
+    --bg: #1e1e1e;
+    --fg: #d4d4d4;
+    --comment: #6a9955;
+    --string: #ce9178;
+    --keyword: #569cd6;
+    --function: #dcdcaa;
+    --number: #b5cea8;
+    --type: #4ec9b0;
   }
 
-  /* Base styles */
   body {
-    background-color: var(--dracula-bg);
-    color: var(--dracula-foreground);
+    background: var(--bg);
+    color: var(--fg);
     font-family: 'Segoe UI', sans-serif;
     padding: 20px;
   }
 
   h1, h2, h3 {
-    color: var(--dracula-pink);
+    color: #ffffff;
   }
 
   a {
-    color: var(--dracula-cyan);
+    color: #3794ff;
   }
 
-  /* Code block & inline code */
   pre, .highlight {
-    background-color: var(--dracula-current-line) !important;
-    color: var(--dracula-foreground) !important;
+    background: #1e1e1e !important;
+    color: var(--fg) !important;
     padding: 1rem;
-    border-radius: 8px;
+    border-radius: 6px;
     overflow-x: auto;
     font-family: 'Fira Code', monospace;
     font-size: 0.95em;
@@ -50,14 +44,40 @@ title: Expr_parser
     color: inherit !important;
   }
 
-  .highlight .k       { color: var(--dracula-pink); }    /* keywords */
-  .highlight .nf      { color: var(--dracula-green); }   /* function names */
-  .highlight .nv      { color: var(--dracula-purple); }  /* variables */
-  .highlight .mi      { color: var(--dracula-purple); }  /* numbers */
-  .highlight .s, .highlight .sb { color: var(--dracula-yellow); } /* strings */
-  .highlight .c, .highlight .cm { color: var(--dracula-comment); font-style: italic; }
-  .highlight .o       { color: var(--dracula-orange); }  /* operators */
-  .highlight .err     { color: var(--dracula-red); }     /* errors */
+  /* Syntax Highlighting */
+  .highlight .c,
+  .highlight .cm {
+    color: var(--comment); font-style: italic;
+  }
+
+  .highlight .s,
+  .highlight .sb {
+    color: var(--string);
+  }
+
+  .highlight .k {
+    color: var(--keyword);
+  }
+
+  .highlight .nf {
+    color: var(--function);
+  }
+
+  .highlight .mi,
+  .highlight .m {
+    color: var(--number);
+  }
+
+  .highlight .nc,
+  .highlight .nt {
+    color: var(--type);
+  }
+
+  img {
+    max-width: 100%;
+    border-radius: 6px;
+    box-shadow: 0 0 10px #000;
+  }
 </style>
 
 <p align="left">
