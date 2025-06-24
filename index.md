@@ -28,6 +28,9 @@ title: Expression Parser
   a {
     color: #82aaff;
   }
+  .highlight .p {
+    color: #ffffff !important;
+  }
 
   pre, .highlight {
     background: #252537 !important;
@@ -96,7 +99,7 @@ We are creating a small Parser to parse simple  __*Mathematical  Expressions*__
 just like 
 
 
-</p>
+
 <p align="left">
   <a href="https://freeimage.host/i/FTTeP3B">
     <img src="https://iili.io/FTTeP3B.md.jpg" 
