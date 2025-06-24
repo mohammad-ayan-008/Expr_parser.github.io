@@ -47,6 +47,9 @@ pub enum Token {
     Eof,
 }
 ```
+
+__LEXING__
+
 <p align="left">
  <a href="https://freeimage.host/i/FTTlQa4">
     <img src="https://iili.io/FTTlQa4.md.jpg" 
@@ -55,7 +58,7 @@ pub enum Token {
          style="border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);" />
   </a>
 </p>
-__LEXING__
+
 A Process to convert the Raw source code into tokens- small meaningful units like keywords , numbers ..  
 ```rs
 impl Lexer {
