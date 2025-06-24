@@ -28,8 +28,8 @@ title: Expression Parser
   }
 
   pre {
-    background-color: #1e1e1e;
-    color: #d4d4d4;
+    background-color: #1e1e1e !important;
+    color: #eee !important;
     padding: 12px;
     border-radius: 6px;
     overflow-x: auto;
@@ -37,10 +37,15 @@ title: Expression Parser
     font-size: 0.95em;
   }
 
-  pre code {
-    background: none;
-    padding: 0;
-    color: inherit;
+  /* This overrides GitHub Pages' code block theming */
+  .highlight {
+    background: #1e1e1e !important;
+    color: #eee !important;
+  }
+
+  .highlight pre, .highlight code {
+    background: none !important;
+    color: inherit !important;
   }
 
   img {
@@ -49,7 +54,6 @@ title: Expression Parser
     max-width: 100%;
   }
 </style>
-
 <p align="left">
   <a href="https://freeimage.host/i/FTomCwQ">
     <img src="https://iili.io/FTomCwQ.jpg" 
