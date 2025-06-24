@@ -1,4 +1,4 @@
-<p align="center">
+<p align="left">
   <a href="https://freeimage.host/i/FTomCwQ">
     <img src="https://iili.io/FTomCwQ.jpg" 
          alt="FTomCwQ" 
