@@ -1,7 +1,5 @@
 <p align="center">
-  <a href="https://imgbb.com/">
-    <img src="assets/rotated_90_download.jpg" alt="download" width="200" style="border-radius: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);" />
-  </a>
+<a href="https://freeimage.host/i/FTomCwQ"><img src="https://iili.io/FTomCwQ.th.jpg" alt="FTomCwQ.th.jpg" border="0"></a>
 </p>
 
 
