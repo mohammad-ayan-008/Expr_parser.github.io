@@ -28,10 +28,7 @@ title: Expression Parser
   a {
     color: #82aaff;
   }
-  .highlight .p {
-    color: #ffffff !important;
-  }
-
+  
   pre, .highlight {
     background: #252537 !important;
     color: var(--fg) !important;
@@ -82,9 +79,10 @@ title: Expression Parser
     border-radius: 6px;
     box-shadow: 0 0 10px #000;
   }
-  pre code span:not([class]) {
+  pre code span:not([class]),
+  pre code > :not(span) {
   color: #ffffff !important;
-  }
+}
 </style>
 
 <p align="left">
