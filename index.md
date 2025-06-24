@@ -1,3 +1,46 @@
+---
+title: Expression Parser
+---
+
+<style>
+  body {
+    background-color: #111;
+    color: #eee;
+    font-family: 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    padding: 20px;
+  }
+
+  h1, h2, h3 {
+    color: #ffffff;
+  }
+
+  a {
+    color: #9ecbff;
+  }
+
+  code {
+    background-color: #222;
+    color: #ffb86c;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-family: monospace;
+  }
+
+  pre {
+    background-color: #222;
+    padding: 10px;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+
+  img {
+    border-radius: 8px;
+    box-shadow: 0 0 10px #000;
+    max-width: 100%;
+  }
+
+
 <p align="left">
   <a href="https://freeimage.host/i/FTomCwQ">
     <img src="https://iili.io/FTomCwQ.jpg" 
