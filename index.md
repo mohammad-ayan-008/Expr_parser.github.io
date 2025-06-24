@@ -83,7 +83,7 @@ title: Expression Parser
     box-shadow: 0 0 10px #000;
   }
 pre code,
-pre code * {
+pre code span[class*="p"] {
   color: var(--fg) !important;
 }
 </style>
