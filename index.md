@@ -102,7 +102,7 @@ pre code span:not([class]) {
 We are creating a small Parser to parse simple  __*Mathematical  Expressions*__
 just like 
 
-<p align="left">
+<!--<p align="left">
  <a href="https://freeimage.host/i/FTTeP3B">
     <img src="https://iili.io/FTTeP3B.md.jpg" 
          alt="FTomCwQ" 
@@ -111,6 +111,7 @@ just like
   </a>
 </p>
 <a href="https://freeimage.host/i/FTbvXFR"><img src="https://iili.io/FTbvXFR.md.jpg" alt="FTbvXFR.md.jpg" border="0"></a>
+-->
 <p align="left">
  <a href="https://freeimage.host/i/FTbvXFR">
     <img src="https://iili.io/FTbvXFR.md.jpg" 
