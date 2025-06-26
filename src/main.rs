@@ -14,11 +14,13 @@ fn main() {
         print!(">>");
         stdout().flush().unwrap();
         stdin().read_line(&mut line).unwrap();
-        let mut lexer = Lexer::new(&line);
+        let  mut lexer = Lexer::new(&line);
 
+        lexer.lexe();
+        println!("{:?}",lexer.tokens);
         //  let tokens = lexer.lexe(line.as_str());
-        //    let mut parser = Parser::new(tokens);
-        println!("{:?}", lexer.lexe());
+        let mut parser = Parser::new(lexer.tokens);
+        println!("{:?}",parser.expression().expr());
         line.clear();
     }
 }
