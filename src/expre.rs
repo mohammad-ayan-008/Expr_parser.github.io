@@ -7,7 +7,7 @@ use std::{
     rc::Rc,
 };
 
-use crate::lexer::{LiteralValue, Token};
+use crate::token::{LiteralValue, Token, TokenType};
 
 /*
 expression     → literal
@@ -30,10 +30,10 @@ pub enum Literal_Value {
     String(Rc<RefCell<String>>),
     Nil,
 }
-impl From<&crate::lexer::LiteralValue> for Literal_Value {
-    fn from(value: &crate::lexer::LiteralValue) -> Self {
+impl From<LiteralValue> for Literal_Value {
+    fn from(value: LiteralValue) -> Self {
         match value {
-            LiteralValue::NUMBER(a) => Literal_Value::Number(*a),
+            LiteralValue::NUMBER(a) => Literal_Value::Number(a),
             LiteralValue::STRING(a) => Literal_Value::String(a.clone()),
         }
     }
@@ -83,17 +83,24 @@ pub enum Expr {
         op: Token,
         right: Box<Expr>,
     },
+    Variable{
+        name:String
+    }
 }
 
 impl Expr {
     pub fn expr(&self) -> Result<Literal_Value, String> {
         match self {
+            Expr::Variable { name }=>{
+                println!("Searching variable");
+                Ok(Literal_Value::Nil)
+            }
             Expr::Group { expr } => expr.expr(),
             Expr::Unary { op, right } => {
                 let expr = right.expr()?;
-                match (expr, op) {
-                    (any, Token::Not) => Ok(any.isfalsly()),
-                    (Literal_Value::Number(a), Token::Sub) => Ok(Literal_Value::Number(-a)),
+                match (expr, &op.token_type) {
+                    (any, TokenType::Not) => Ok(any.isfalsly()),
+                    (Literal_Value::Number(a), TokenType::Sub) => Ok(Literal_Value::Number(-a)),
                     _ => todo!(),
                 }
             }
@@ -103,59 +110,69 @@ impl Expr {
                 let val = left.expr()?;
                 let val2 = right.expr()?;
 
-                match (val, op, val2) {
-                    (Literal_Value::Number(a), Token::Sub, Literal_Value::Number(b)) => {
+                match (val, &op.token_type, val2) {
+                    (Literal_Value::Number(a), TokenType::Sub, Literal_Value::Number(b)) => {
                         Ok(Literal_Value::Number(a - b))
                     }
-                    (Literal_Value::Number(a), Token::Mul, Literal_Value::Number(b)) => {
+                    (Literal_Value::Number(a), TokenType::Mul, Literal_Value::Number(b)) => {
                         Ok(Literal_Value::Number(a * b))
                     }
-                    (Literal_Value::Number(a), Token::Div, Literal_Value::Number(b)) => {
+                    (Literal_Value::Number(a), TokenType::Div, Literal_Value::Number(b)) => {
                         Ok(Literal_Value::Number(a / b))
                     }
-                    (Literal_Value::Number(a), Token::Add, Literal_Value::Number(b)) => {
+                    (Literal_Value::Number(a), TokenType::Add, Literal_Value::Number(b)) => {
                         Ok(Literal_Value::Number(a + b))
                     }
 
-                    (Literal_Value::Number(a), Token::Greater, Literal_Value::Number(b)) => {
+                    (Literal_Value::Number(a), TokenType::Greater, Literal_Value::Number(b)) => {
                         Ok(Literal_Value::Boolean(a > b))
                     }
-                    (Literal_Value::Number(a), Token::GreaterEqual, Literal_Value::Number(b)) => {
-                        Ok(Literal_Value::Boolean(a >= b))
-                    }
-                    (Literal_Value::Number(a), Token::Lesser, Literal_Value::Number(b)) => {
+                    (
+                        Literal_Value::Number(a),
+                        TokenType::GreaterEqual,
+                        Literal_Value::Number(b),
+                    ) => Ok(Literal_Value::Boolean(a >= b)),
+                    (Literal_Value::Number(a), TokenType::Lesser, Literal_Value::Number(b)) => {
                         Ok(Literal_Value::Boolean(a < b))
                     }
-                    (Literal_Value::Number(a), Token::LesserEqual, Literal_Value::Number(b)) => {
-                        Ok(Literal_Value::Boolean(a <= b))
-                    }
-                    (Literal_Value::Number(a), Token::EqualEquals, Literal_Value::Number(b)) => {
-                        Ok(Literal_Value::Boolean(a == b))
-                    }
-                    (Literal_Value::Number(a), Token::NotEqual, Literal_Value::Number(b)) => {
+                    (
+                        Literal_Value::Number(a),
+                        TokenType::LesserEqual,
+                        Literal_Value::Number(b),
+                    ) => Ok(Literal_Value::Boolean(a <= b)),
+                    (
+                        Literal_Value::Number(a),
+                        TokenType::EqualEquals,
+                        Literal_Value::Number(b),
+                    ) => Ok(Literal_Value::Boolean(a == b)),
+                    (Literal_Value::Number(a), TokenType::NotEqual, Literal_Value::Number(b)) => {
                         Ok(Literal_Value::Boolean(a != b))
                     }
-                    (Literal_Value::Boolean(a), Token::EqualEquals, Literal_Value::Boolean(b)) => {
-                        Ok(Literal_Value::Boolean(a == b))
-                    }
-                    (Literal_Value::Boolean(a), Token::NotEqual, Literal_Value::Boolean(b)) => {
+                    (
+                        Literal_Value::Boolean(a),
+                        TokenType::EqualEquals,
+                        Literal_Value::Boolean(b),
+                    ) => Ok(Literal_Value::Boolean(a == b)),
+                    (Literal_Value::Boolean(a), TokenType::NotEqual, Literal_Value::Boolean(b)) => {
                         Ok(Literal_Value::Boolean(a != b))
                     }
 
-                    (Literal_Value::String(a), Token::NotEqual, Literal_Value::String(b)) => {
+                    (Literal_Value::String(a), TokenType::NotEqual, Literal_Value::String(b)) => {
                         Ok(Literal_Value::Boolean(a != b))
                     }
-                    (Literal_Value::String(a), Token::EqualEquals, Literal_Value::String(b)) => {
-                        Ok(Literal_Value::Boolean(a == b))
-                    }
-                    (Literal_Value::Nil, Token::EqualEquals, Literal_Value::Nil) => {
+                    (
+                        Literal_Value::String(a),
+                        TokenType::EqualEquals,
+                        Literal_Value::String(b),
+                    ) => Ok(Literal_Value::Boolean(a == b)),
+                    (Literal_Value::Nil, TokenType::EqualEquals, Literal_Value::Nil) => {
                         Ok(Literal_Value::Boolean(true))
                     }
-                    (Literal_Value::Nil, Token::NotEqual, Literal_Value::Nil) => {
+                    (Literal_Value::Nil, TokenType::NotEqual, Literal_Value::Nil) => {
                         Ok(Literal_Value::Boolean(false))
                     }
 
-                    (Literal_Value::String(val_str), Token::Add, a) => {
+                    (Literal_Value::String(val_str), TokenType::Add, a) => {
                         let str = val_str.clone();
                         match a {
                             Literal_Value::Number(int_val) => {

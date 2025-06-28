@@ -2,47 +2,12 @@ use std::{
     cell::RefCell, collections::HashMap, iter::Peekable, net::ToSocketAddrs, panic, rc::Rc,
     str::Chars, vec,
 };
-#[derive(PartialEq, Clone, PartialOrd, Debug)]
-pub enum LiteralValue {
-    NUMBER(f64),
-    STRING(Rc<RefCell<String>>),
-}
-impl From<f64> for LiteralValue {
-    fn from(value: f64) -> Self {
-        LiteralValue::NUMBER(value)
-    }
-}
-impl From<String> for LiteralValue {
-    fn from(value: String) -> Self {
-        LiteralValue::STRING(Rc::new(RefCell::new(value)))
-    }
-}
-#[derive(Debug, Clone, PartialEq)]
-pub enum Token {
-    Literal { value: LiteralValue },
-    Add,
-    Sub,
-    Div,
-    Nil,
-    Greater,
-    GreaterEqual,
-    LesserEqual,
-    Lesser,
-    EqualEquals,
-    Not,
-    NotEqual,
-    True,
-    False,
-    Mul,
-    RightParen,
-    LeftParen,
-    Eof,
-}
 
+use crate::token::{LiteralValue, Token, TokenType};
 pub struct Lexer<'a> {
     source: Peekable<Chars<'a>>,
     pub tokens: Vec<Token>,
-    keywords: HashMap<String, Token>,
+    keywords: HashMap<String, TokenType>,
     line: usize,
 }
 
@@ -56,11 +21,12 @@ impl<'a> Lexer<'a> {
         }
     }
 
-    fn init_keywords() -> HashMap<String, Token> {
+    fn init_keywords() -> HashMap<String, TokenType> {
         let mut map = HashMap::new();
-        map.insert("false".to_string(), Token::False);
-        map.insert("true".to_string(), Token::True);
-        map.insert("nil".to_string(), Token::Nil);
+        map.insert("false".to_string(), TokenType::False);
+        map.insert("true".to_string(), TokenType::True);
+        map.insert("nil".to_string(), TokenType::Nil);
+        map.insert("print".to_string(), TokenType::Print);
         map
     }
     fn peek(&mut self) -> Option<&char> {
@@ -74,19 +40,22 @@ impl<'a> Lexer<'a> {
         while let Some(a) = self.next() {
             match Some(a) {
                 Some('(') => {
-                    self.add_token(Token::LeftParen);
+                    self.add_token(TokenType::LeftParen);
+                },
+                Some(';') =>{
+                    self.add_token(TokenType::Semicoln);
                 }
                 Some('+') => {
-                    self.add_token(Token::Add);
+                    self.add_token(TokenType::Add);
                 }
                 Some('-') => {
-                    self.add_token(Token::Sub);
+                    self.add_token(TokenType::Sub);
                 }
                 Some('/') => {
-                    self.add_token(Token::Div);
+                    self.add_token(TokenType::Div);
                 }
                 Some('*') => {
-                    self.add_token(Token::Mul);
+                    self.add_token(TokenType::Mul);
                 }
                 Some('"') => {
                     let mut str = String::new();
@@ -103,16 +72,16 @@ impl<'a> Lexer<'a> {
                     if !terminated {
                         return Err("non terminated String".to_string());
                     }
-                    self.add_token(Token::Literal {
+                    self.add_token(TokenType::Literal {
                         value: LiteralValue::from(str),
                     });
                 }
                 Some(')') => {
-                    self.add_token(Token::RightParen);
+                    self.add_token(TokenType::RightParen);
                 }
                 Some(a @ '=') => {
                     if self.peek() == Some(&'=') {
-                        self.add_token(Token::EqualEquals);
+                        self.add_token(TokenType::EqualEquals);
                         self.next();
                     } else {
                         return Err(format!("Invalid Token {} {:?}", a, self.peek()));
@@ -120,27 +89,27 @@ impl<'a> Lexer<'a> {
                 }
                 Some('>') => {
                     if self.peek() == Some(&'=') {
-                        self.add_token(Token::GreaterEqual);
+                        self.add_token(TokenType::GreaterEqual);
                         self.next();
                     } else {
-                        self.add_token(Token::Greater);
+                        self.add_token(TokenType::Greater);
                     }
                 }
                 Some('!') => {
                     if self.peek() == Some(&'=') {
-                        self.add_token(Token::NotEqual);
+                        self.add_token(TokenType::NotEqual);
                         self.next();
                     } else {
-                        self.add_token(Token::Not);
+                        self.add_token(TokenType::Not);
                     }
                 }
 
                 Some('<') => {
                     if self.peek() == Some(&'=') {
-                        self.add_token(Token::LesserEqual);
+                        self.add_token(TokenType::LesserEqual);
                         self.next();
                     } else {
-                        self.add_token(Token::Lesser);
+                        self.add_token(TokenType::Lesser);
                     }
                 }
                 Some(num @ '0'..='9') => {
@@ -153,16 +122,16 @@ impl<'a> Lexer<'a> {
                             break;
                         }
                     }
-                    self.add_token(Token::Literal {
+                    self.add_token(TokenType::Literal {
                         value: LiteralValue::from(str.parse::<f64>().unwrap()),
                     });
                 }
                 c if c.unwrap().is_ascii_alphabetic() => {
                     let mut str = String::new();
                     str.push(c.unwrap());
-                    while let Some(a) = self.next() {
+                    while let Some(a) = self.peek() {
                         if a.is_ascii_alphanumeric() {
-                            str.push(a);
+                            str.push(self.next().unwrap());
                         } else {
                             break;
                         }
@@ -171,7 +140,7 @@ impl<'a> Lexer<'a> {
                     if let Some(a) = key {
                         self.add_token(a.clone());
                     } else {
-                        return Err(format!("not an identifier {}", str));
+                        self.add_token(TokenType::Identifier { value: str });
                     }
                 }
                 Some('\n') => {
@@ -181,10 +150,14 @@ impl<'a> Lexer<'a> {
                 a => return Err(format!("{:?}", a)),
             }
         }
-        self.tokens.push(Token::Eof);
+        self.add_token(TokenType::Eof);
         Ok(&self.tokens)
     }
-    fn add_token(&mut self, token: Token) {
+    fn add_token(&mut self, token: TokenType) {
+        let token = Token {
+            token_type: token,
+            line: self.line,
+        };
         self.tokens.push(token);
     }
 }
